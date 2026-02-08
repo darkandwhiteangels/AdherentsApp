@@ -148,15 +148,22 @@ flowchart TB
     classDef brown fill:#E08543,stroke:#3D2412,stroke-width:2px
 ```
 
-Modèle relationnel simplifié
+# Modèle relationnel simplifié
+```mermaid
+erDiagram
+  ADHERENT ||--o{ ENROLLMENT : "a des inscriptions"
+  SEASON   ||--o{ ENROLLMENT : "contient"
+  HOUSEHOLD ||--o{ ENROLLMENT : "regroupe (saison)"
 
-ADHERENT ||--o{ HOUSEHOLD : appartient
-HOUSEHOLD ||--o{ COTISATION : calcule
-SEASON ||--o{ COTISATION : contient
-SEASON ||--o{ AG : organise
-AG ||--o{ MINUTES : genere
+  HOUSEHOLD ||--o{ GUARDIANSHIP : "a des responsables"
+  ADHERENT  ||--o{ GUARDIANSHIP : "peut etre responsable"
+  ADHERENT  ||--o{ GUARDIANSHIP : "peut etre mineur"
 
-Architecture logique de l’application
+  SEASON ||--o{ HOUSEHOLD_COTISATION : "cotisation foyer"
+  HOUSEHOLD ||--o{ HOUSEHOLD_COTISATION : "recoit"
+```
+# Architecture logique de l’application
+```mermaid
 flowchart TD
 
 UI[Compose UI] --> VM[ViewModel]
@@ -164,8 +171,8 @@ VM --> REPO[Repository]
 REPO --> FIRESTORE[Firestore]
 REPO --> AUTH[Firebase Auth]
 REPO --> STORAGE[Firebase Storage]
-
-Organisation des données Firestore (conceptuelle)
+```
+# Organisation des données Firestore (conceptuelle)
 
 Structure logique :
 
