@@ -1,4 +1,5 @@
-![le logo de AnteStorm Labs](http://www.image-heberg.fr/files/thumbs/17705699754186274869.png) # Architecture fonctionnelle globale
+![le logo de AnteStorm Labs](http://www.image-heberg.fr/files/thumbs/17705699754186274869.png) 
+<center><font color = "blue"> # Architecture fonctionnelle globale </font></center>
 Flux principal du système
 flowchart TD
 
