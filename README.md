@@ -1,4 +1,4 @@
-Architecture fonctionnelle globale
+# Architecture fonctionnelle globale
 Flux principal du système
 flowchart TD
 
