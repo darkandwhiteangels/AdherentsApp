@@ -28,7 +28,9 @@ captures/
 *.keystore
 
 # Firebase / Google Services (optionnel si tu veux les garder privés)
-google-services.json
+# Service account / secrets
+scripts/adherentsapp-service-account.json
+scripts/*service-account*.json
 
 # Kotlin
 *.class
