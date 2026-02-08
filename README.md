@@ -1,4 +1,4 @@
-![le logo de AnteStorm Labs](https://ibb.co/G4d2FLrh)
+![le logo de AnteStorm Labs](https://i.ibb.co/S46nJ8ZL/Capture-d-cran-2026-02-08-175041.png)
 
 # Architecture fonctionnelle globale
 Flux principal du système
