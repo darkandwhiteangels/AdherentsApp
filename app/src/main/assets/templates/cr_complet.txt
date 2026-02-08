@@ -1,0 +1,41 @@
+COMPTE RENDU ANNUEL – ASSOCIATION LOI 1901
+
+Association
+Nom : {{associationName}}
+Ville : {{city}}
+Saison : {{seasonKey}}
+
+Effectifs
+Total adhérents : {{membersTotal}}
+Enfants : {{membersChildren}}
+Adultes : {{membersAdults}}
+
+Activités sportives
+Entraînements assurés : {{trainingsSummary}}
+Axes de travail : {{technicalFocus}}
+
+Événements de la saison
+{{eventsList}}
+
+Bilan sportif
+{{sportAssessment}}
+
+Bilan financier (résumé)
+Situation : {{financialStatus}}
+Commentaire : {{financialComment}}
+
+Difficultés rencontrées
+{{issuesSummary}}
+
+Perspectives saison suivante
+{{nextSeasonGoals}}
+
+Conclusion
+{{generalConclusion}}
+
+Fait à {{city}}
+Le {{reportDate}}
+
+Président
+Nom : {{presidentName}}
+Signature : {{signatureUrl}}

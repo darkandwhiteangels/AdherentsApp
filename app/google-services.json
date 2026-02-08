@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "15244798024",
+    "project_id": "adherentsapp",
+    "storage_bucket": "adherentsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15244798024:android:258907e35e11add521907d",
+        "android_client_info": {
+          "package_name": "com.antechrist.adherentsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3jsAnfi27BeByutVuQXd4BY2Nxghcw58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

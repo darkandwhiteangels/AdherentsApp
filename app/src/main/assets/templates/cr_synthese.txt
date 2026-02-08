@@ -1,0 +1,35 @@
+COMPTE RENDU ANNUEL – VERSION ULTRA SYNTHÈSE (AG)
+
+Association : {{associationName}}
+Saison : {{seasonKey}}
+Lieu : {{city}}
+
+Effectifs
+Nombre total d’adhérents : {{membersTotal}}
+Enfants : {{membersChildren}} – Adultes : {{membersAdults}}
+
+Activités
+{{trainingsSummary}}
+{{technicalFocus}}
+Passages de grades organisés
+
+Événements marquants
+{{eventsShort}}
+
+Bilan sportif
+{{sportAssessmentShort}}
+
+Bilan financier
+Situation financière saine
+Cotisations et licences à jour
+(Détail présenté dans le rapport du trésorier)
+
+Perspectives
+{{nextSeasonGoalsShort}}
+
+Conclusion
+{{generalConclusionShort}}
+
+Fait à {{city}}, le {{reportDate}}
+Président : {{presidentName}}
+Signature : {{signatureUrl}}
