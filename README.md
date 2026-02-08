@@ -1,3 +1,5 @@
+![le logo de AnteStorm Labs](https://ibb.co/G4d2FLrh)
+
 # Architecture fonctionnelle globale
 Flux principal du système
 flowchart TD
