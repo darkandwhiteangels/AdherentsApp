@@ -1,15 +1,66 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle
+.gradle/
+build/
+
+# Local configuration file
 local.properties
+
+# Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Firebase / Google Services (optionnel si tu veux les garder privés)
+google-services.json
+
+# Kotlin
+*.class
+*.kotlin_module
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Navigation Safe Args
+.navigation/
+
+# Android Studio 3+ cache
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+
+# Build outputs
+*/build/
+app/release/
+app/debug/
+
+# Hilt / kapt
+kapt/
+kaptGenerated/
+
+# Zip / apk
+*.apk
+*.aab
+*.zip
+*.jar
