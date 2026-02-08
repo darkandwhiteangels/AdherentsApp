@@ -1,452 +1,196 @@
-AdherentsApp
-Présentation
+Architecture fonctionnelle globale
+Flux principal du système
+flowchart TD
 
-AdherentsApp est une application Android destinée à la gestion complète d’un club (adhérents, familles, cotisations, saisons, assemblées générales, communications et suivi interne).
+A[Création adhérent] --> B[Rattachement foyer]
+B --> C[Calcul cotisation]
+C --> D[Saison active]
+D --> E[Encaissement]
+D --> F[Assemblée Générale]
+F --> G[Compte rendu]
+G --> H[Clôture saison]
+H --> I[Archivage]
+I --> J[Nouvelle saison]
 
-Le projet a pour objectif de remplacer :
 
-les fichiers Excel
+Ce flux représente le fonctionnement réel du club au fil de l’année.
 
-les listes papier
+Cycle de vie d’un adhérent
+flowchart LR
 
-les messages dispersés
+A[Création] --> B[Assignation foyer]
+B --> C[Statut cotisation]
+C --> D[Participation saison]
+D --> E[Historique]
 
-le suivi manuel des cotisations
+Modèle relationnel simplifié
+erDiagram
 
-par un système centralisé, structuré et évolutif.
+ADHERENT ||--o{ HOUSEHOLD : appartient
+HOUSEHOLD ||--o{ COTISATION : calcule
+SEASON ||--o{ COTISATION : contient
+SEASON ||--o{ AG : organise
+AG ||--o{ MINUTES : genere
 
-L’application est conçue pour fonctionner dans un contexte réel d’association sportive, avec des contraintes réelles :
+Architecture logique de l’application
+flowchart TD
 
-familles
+UI[Compose UI] --> VM[ViewModel]
+VM --> REPO[Repository]
+REPO --> FIRESTORE[Firestore]
+REPO --> AUTH[Firebase Auth]
+REPO --> STORAGE[Firebase Storage]
 
-mineurs
+Organisation des données Firestore (conceptuelle)
 
-responsables légaux
+Structure logique :
 
-remises
+users/
+adherents/
+households/
+seasons/
+cotisations/
+season_admin/
+notifications/
+groups/
 
-licences fédérales
+États d’une saison
+stateDiagram-v2
+[*] --> Active
+Active --> AG_PREPARED
+AG_PREPARED --> MINUTES_READY
+MINUTES_READY --> CLOSED
+CLOSED --> ARCHIVED
 
-AG et comptes rendus
+États d’un document AG / CR
+stateDiagram-v2
+[*] --> Draft
+Draft --> Editable
+Editable --> Validated
+Validated --> Locked
 
-saisons annuelles
+Organisation interne recommandée du code
 
-Objectifs du projet
-Objectifs fonctionnels
+Structure logique idéale :
 
-gérer les adhérents
+ui/
+viewmodel/
+repository/
+model/
+domain/
+firebase/
+navigation/
 
-gérer les foyers
 
-calculer les cotisations
+Objectif :
 
-suivre les paiements
-
-gérer les saisons
-
-générer des documents officiels
-
-communiquer avec les membres
-
-gérer les rôles et permissions
-
-Objectifs techniques
-
-architecture propre et maintenable
-
-sécurité Firestore stricte
-
-UI fluide et simple
-
-code modulaire et refactorisable
-
-Stack technique
-
-Application Android :
-
-Kotlin
-
-Jetpack Compose
-
-MVVM
-
-Hilt
-
-Navigation Compose
-
-Backend :
-
-Firebase Auth
-
-Firestore
-
-Firebase Storage
-
-Cloud Functions
-
-Architecture générale
-
-L’application suit une séparation claire :
-
-UI (Compose)
-ViewModel
-Repository
-Firestore
-
-Objectifs :
+UI simple
 
 logique métier isolée
 
-UI découplée
+accès données centralisé
 
-règles Firestore strictes
-
-Structure du projet
-app/
-
-Application Android principale
-
-Contient :
-
-écrans
-
-viewmodels
-
-modèles
-
-navigation
-
-repositories
-
-functions/
-
-Fonctions backend Firebase
-
-Utilisées pour :
-
-traitements automatiques
-
-sécurité
-
-automatisations futures
-
-scripts/
-
-Scripts internes et outils de maintenance.
-
-Ne contient pas de secrets dans le repo.
-
-Modèle fonctionnel
-Adhérent
-
-Un adhérent peut être :
-
-mineur
-
-majeur autonome
-
-majeur non autonome
-
-Peut être lié à :
-
-un foyer
-
-un responsable légal
-
-un rôle
-
-Foyer
-
-Un foyer regroupe :
-
-un responsable
-
-des pratiquants
-
-éventuellement des majeurs non autonomes
-
-Permet :
-
-calcul de cotisation
-
-remises familiales
-
-Saison
-
-Une saison contient :
-
-tarifs
-
-remises
-
-paramètres financiers
-
-AG
-
-comptes rendus
-
-cotisations
-
-Modules de l’application
-Gestion des adhérents
-
-Fonctionnalités existantes :
-
-création
-
-modification
-
-rattachement foyer
-
-photo
-
-navigation dans la liste
-
-État :
-Stable mais encore en amélioration.
-
-À faire :
-
-optimisation du détail adhérent
-
-amélioration rôles
-
-Gestion des rôles
-
-Rôles existants :
-
-SuperAdmin
-
-Admin
-
-Trésorier
-
-Secrétaire
-
-Jury
-
-Membre
-
-État :
-Fonctionnel partiellement.
-
-À faire :
-
-refactor complet des permissions
-
-séparation Staff / Membres
-
-Cotisations
-
-Fonctionnalités existantes :
-
-calcul automatique
-
-remises
-
-exemptions
-
-licence
-
-État :
-Fonctionnel.
-
-À faire :
-
-export rapport
-
-historique complet
-
-Saisons
-
-Fonctionnalités existantes :
-
-configuration
-
-paramètres financiers
-
-État :
-Partiellement complet.
-
-À faire :
-
-clôture saison
-
-archivage
-
-création nouvelle saison
-
-Assemblée Générale / Compte rendu
-
-Fonctionnalités existantes :
-
-saisie
-
-draft
-
-À faire :
-
-validation officielle
-
-PDF final
-
-verrouillage
-
-Notifications et groupes
-
-Fonctionnalités existantes :
-
-création groupes
-
-À faire :
-
-édition groupe
-
-automatisation envois
-
-État global du projet
-
-Modules stables :
-
-adhérents
-
-foyers
-
-cotisations
-
-configuration saison
-
-Modules en cours :
-
-rôles
-
-AG / CR
-
-notifications
-
-Modules prévus :
-
-espace membre
-
-statistiques
-
-exports
-
-Roadmap technique
+Roadmap technique détaillée
 Phase actuelle
 
-Refactor rôles et adhérents.
+Refactor des rôles et des écrans adhérents.
 
-Prochaine étape
+Phase suivante
 
-Clôture de saison complète.
+Clôture saison complète :
 
-Étapes futures
+Objectifs :
 
-rapports PDF
+verrouiller cotisations
 
-espace membre
+générer snapshot
 
-statistiques
+archiver
 
-Sécurité
+ouvrir nouvelle saison
 
-Le projet utilise :
+Phase suivante
 
-règles Firestore strictes
+Rapports et documents :
 
-contrôle des rôles
+PDF cotisations
 
-validation des champs
+PDF AG
 
-Ne jamais commiter :
+export CSV
 
-service accounts
+Phase suivante
 
-google-services.json réel
+Espace membres :
 
-clés API
+vidéos
 
-Installation
+progression
 
-Cloner le projet :
+présence
 
-git clone https://github.com/darkandwhiteangels/AdherentsApp.git
+auto-évaluation
 
+Modules et état réel
+Module	État	Remarques
+Authentification	Stable	Fonctionne
+Adhérents	Stable	Améliorations UI prévues
+Foyers	Stable	Logique OK
+Cotisations	Stable	Rapport à faire
+Saisons	Partiel	Clôture à implémenter
+AG / CR	En cours	Workflow à finaliser
+Notifications	Partiel	Edition groupe à améliorer
+Rôles	Refactor en cours	Priorité actuelle
+TODO priorisé
+Priorité haute
 
-Ouvrir avec Android Studio.
-
-Configurer Firebase :
-
-ajouter google-services.json
-
-Lancer l’application.
-
-Organisation Git recommandée
-
-Branches :
-
-main → stable
-
-dev → développement
-
-Commits par module.
-
-Notes de développement
-
-Projet en évolution continue.
-Refactoring régulier.
-Architecture améliorée progressivement.
-
-Vision long terme
-
-Faire d’AdherentsApp :
-
-un outil complet de gestion associative
-
-robuste
-
-simple à utiliser
-
-réutilisable par d’autres clubs
-
-Suivi personnel du projet
-Ce qui est fait
-
-structure Firebase
-
-gestion adhérents
-
-gestion foyers
-
-cotisations
-
-base saison
-
-groupes notifications base
-
-En cours
+clôture saison
 
 refactor rôles
 
 invitations parent
 
-AG et CR
-
-amélioration UI
-
-À faire
-
-clôture saison complète
+Priorité moyenne
 
 rapports PDF
 
-dashboard
+amélioration UI
 
-espace membre
+Priorité basse
 
-Journal technique (à tenir à jour)
+stats membres
 
-Version actuelle : Dev
-Dernier refactor majeur : rôles / adhérents
-Priorité actuelle : clôture saison
+espace vidéos
+
+Journal de développement
+
+Ajouter chaque jour :
+
+Date :
+Travail effectué :
+Problèmes rencontrés :
+Prochaine étape :
+
+
+Ça devient extrêmement utile dans les projets longs.
+
+Vision cible de l’application
+
+Objectif final :
+
+Une application capable de gérer :
+
+plusieurs saisons
+
+plusieurs clubs (à long terme)
+
+documents officiels
+
+communication centralisée
+
+Conseil important (retour d’expérience)
+
+Le moment où un projet devient difficile, ce n’est pas quand il devient gros…
+c’est quand on ne voit plus clairement son architecture.
+
+Un README comme celui-ci sert justement à garder la vision claire.
