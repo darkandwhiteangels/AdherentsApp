@@ -11,84 +11,87 @@ config:
   theme: base
 ---
 flowchart LR
+
+    Tache1["Fonction terminée"]:::done
+    Tache2["Fonction en cours"]:::wip
+    Tache3["Fonction à faire"]:::todo
+
+    classDef done fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+    classDef wip fill:#FFE0B2,stroke:#EF6C00,stroke-width:2px,color:#E65100;
+    classDef todo fill:#ECEFF1,stroke:#546E7A,stroke-width:2px,color:#263238;
+
     n4["Staff"] --> M["Main"]
     M === bNb["Bottom NavBar"] & mTb["Menu TopBar"]
-    subgraph BottomNav
-    
-    bNb --> A["Adhérents"] & P1["Présence"] & n2["Cotisations"] & n5["Bureau"]
-    subgraph Module Adhérents
-    A --> F["Fiche détail"] & S["swipe del/archi."] & Ad["Ajouter un adhérent"]
-    end
-    subgraph Module Présences
-    P1 --> C["Baby"] & n1["Enfants -u14"] & n3["Adulte"]
-    end
-    subgraph Module Cotisations
-    n2 === n2mTb['TopBar Cotisations]
-    n2mTb --> n12(["Générer Dossiers"]) & n13(["Recalculer Dossiers"]) & n14(["Liste Responsables"]) & n15(["Params Saison"]) & n16(["Rapport cotisations"]) & n17(["Rapport Lic. FFK"]) & n27(["Clôture Saison"]) & n42["Clic foyer"]
-    n14 --- n18["Listing adults only RGPD"]
-    n18 --> n19["Slide R"] & n20["Slide L"] & n21["Clic"] & n22["Long Press"]
-    n19 --> n23["Edit Resp."]
-    n20 --> n24["Supprime Resp."]
-    n21 --> n25["Select invitation accès App"]
-    n22 --> n26["Invitation accès App"]
-    n42 --> n43["Système de remise"] & n44["Saisie Aide"] & n45["Saisie Règlement"] & n46["Statut foyer"] & n47["Attestation"]
-    end
-    subgraph Bureau
-    n5 --> n28>"Params Club"] & n33>"AG CR"] & n34>"Stats total"]
-    n28 --> n29["Sign Président"] & n30["Sign Secrétaire"] & n31["Logo Club"] & n32["Nom et ville Club"]    
-    end    
-    end
-    subgraph TopNav
-    mTb --> n6["Notifications Push"] & n35["Listing SMS/Email"] & n38["Déconnexion"] & n39["Kihon Board"]
-    n6 --> n7(("Nouveau Msg")) & n8["Gestion Gr Perso"]
-    n8 --> n9["Ajouter Gr"] & n10["Supprimer Gr"] & n11["Editer Gr"]
-    n35 --> n36["Envoie de SMS"] & n37["Envoie de Email"]
-    n39 --> n40["Catalogue Kihon"] & n41["En cours..."]
-    end
-    
 
-    n4@{ icon: "fa:address-card", pos: "b"}
-    M@{ shape: cyl}
-    mTb@{ shape: hex}
-    A@{ shape: diam}
-    P1@{ shape: diam}
-    n2@{ shape: diam}
-    n2mTb@{ shape: procs}
-    n5@{ shape: diam}
-    F@{ shape: display}
-    S@{ shape: stored-data}
-    Ad@{ shape: db}
-    C@{ shape: cyl}
-    n1@{ shape: cyl}
-    n3@{ shape: cyl}
-    n6@{ shape: hex}
-    n35@{ shape: hex}
-    n38@{ shape: dbl-circ}
-    n39@{ shape: trap-t}
-    n8@{ shape: dbl-circ}
-    n9@{ shape: h-cyl}
-    n10@{ shape: h-cyl}
-    n11@{ shape: h-cyl}
-    n42@{ shape: procs}
-    n18@{ shape: cyl}
-    n19@{ shape: h-cyl}
-    n20@{ shape: h-cyl}
-    n21@{ shape: h-cyl}
-    n22@{ shape: h-cyl}
-    n24@{ shape: rect}
-    n29@{ shape: rounded}
-    n30@{ shape: rounded}
-    n31@{ shape: rounded}
-    n32@{ shape: rounded}
-    n36@{ shape: cyl}
-    n37@{ shape: cyl}
-    n40@{ shape: stored-data}
-    n41@{ shape: display}
-    n43@{ shape: delay}
-    n44@{ shape: delay}
-    n45@{ shape: delay}
-    n46@{ shape: delay}
-    n47@{ shape: delay}
+    subgraph BottomNav
+      bNb --> A["Adhérents"] & P1["Présence"] & n2["Cotisations"] & n5["Bureau"]
+
+      subgraph Module_Adherents["Module Adhérents"]
+        A --> F["Fiche détail"] & S["Swipe del/archi."] & Ad["Ajouter un adhérent"]
+      end
+
+      subgraph Module_Presences["Module Présences"]
+        P1 --> C["Baby"] & n1["Enfants -u14"] & n3["Adulte"]
+      end
+
+      subgraph Module_Cotisations["Module Cotisations"]
+        n2 === n2mTb["TopBar Cotisations"]
+        n2mTb --> n12(["Générer Dossiers"]) & n13(["Recalculer Dossiers"]) & n14(["Liste Responsables"]) & n15(["Params Saison"]) & n16(["Rapport cotisations"]) & n17(["Rapport Lic. FFK"]) & n27(["Clôture Saison"]) & n42["Clic foyer"]
+
+        n14 --- n18["Listing adults only RGPD"]
+        n18 --> n19["Slide R"] & n20["Slide L"] & n21["Clic"] & n22["Long Press"]
+        n19 --> n23["Edit Resp."]
+        n20 --> n24["Supprime Resp."]
+        n21 --> n25["Select invitation accès App"]
+        n22 --> n26["Invitation accès App"]
+
+        n42 --> n43["Système de remise"] & n44["Saisie Aide"] & n45["Saisie Règlement"] & n46["Statut foyer"] & n47["Attestation"]
+      end
+
+      subgraph Bureau["Bureau"]
+        n5 --> n28["Params Club"] & n33["AG / CR"] & n34["Stats total"]
+        n28 --> n29["Sign Président"] & n30["Sign Secrétaire"] & n31["Logo Club"] & n32["Nom et ville Club"]
+      end
+    end
+
+    subgraph TopNav["TopNav"]
+      mTb --> n6["Notifications Push"] & n35["Listing SMS/Email"] & n38["Déconnexion"] & n39["Kihon Board"]
+      n6 --> n7(("Nouveau Msg")) & n8["Gestion Gr Perso"]
+      n8 --> n9["Ajouter Gr"] & n10["Supprimer Gr"] & n11["Editer Gr"]
+      n35 --> n36["Envoie de SMS"] & n37["Envoie de Email"]
+      n39 --> n40["Catalogue Kihon"] & n41["En cours..."]
+    end
+
+    %% ============
+    %% COLOR LEGEND
+    %% ============
+    classDef done fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+    classDef wip  fill:#FFE0B2,stroke:#EF6C00,stroke-width:2px,color:#E65100;
+    classDef todo fill:#ECEFF1,stroke:#546E7A,stroke-width:2px,color:#263238;
+
+    %% ============
+    %% DONE (stable)
+    %% ============
+    class n4,M,bNb,mTb,n38 done;
+    class A,F,S,Ad done;
+    class P1,C,n1,n3 done;
+    class n2,n2mTb,n12,n13,n15,n42,n43,n44,n45,n46,n47 done;
+    class n14,n18,n19,n20,n21,n22,n23,n24,n25,n26 done;
+    class n6,n7,n8,n9,n10,n11,n35,n36,n37 done;
+
+
+    %% ============
+    %% WIP (en cours / partiel)
+    %% ============
+    class n5,n28,n29,n30,n31,n32,n33 wip;
+    class n39,n40,n41 wip;
+    class n16,n17 wip;
+
+
+    %% ============
+    %% TODO (à faire)
+    %% ============
+    class n27,n34 todo;
 ```
 
 Ce flux représente le fonctionnement réel du club au fil de l’année.
